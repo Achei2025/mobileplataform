@@ -6,7 +6,8 @@ import {
   TouchableOpacity,
   ScrollView
 } from 'react-native';
-import { useRouter } from 'expo-router';
+import { useRouter } from 'expo-router'; // Importando o useRouter
+import { Feather } from '@expo/vector-icons'; // Importando os ícones do Feather
 
 // Interface para o objeto de B.O.
 interface BoItem {
@@ -36,20 +37,19 @@ const bosData: BoItem[] = [
 ];
 
 export default function MeusBos() {
-  const router = useRouter();
+  const router = useRouter(); // Inicializando o useRouter
 
   // Quando clicar em "+ Criar Novo B.O."
   const handleCreateNewBo = () => {
-    router.push('/registrarbo'); 
+    router.push('/criarbo');  // Redireciona para a tela de criar B.O.
   };
 
-  // Tipando boId como string
+  // Função para navegar para a tela de Acompanhar B.O.
   const handleAcompanharBo = (boId: string) => {
-    // Ajuste a rota e parâmetros conforme sua navegação.
     router.push({
-        pathname: '/acompanhamentobo', // com barra inicial
-        params: { id: boId },
-      });
+      pathname: '/registrarbo',  // Rota para a tela de acompanhamento
+      params: { id: boId },  // Passa o id do B.O. para a tela de acompanhamento
+    });
   };
 
   return (
@@ -89,7 +89,7 @@ export default function MeusBos() {
               {/* Botão de acompanhar */}
               <TouchableOpacity
                 style={styles.acompanharButton}
-                onPress={() => handleAcompanharBo(bo.id)}
+                onPress={() => handleAcompanharBo(bo.id)}  // Passando o id do B.O.
               >
                 <Text style={styles.acompanharButtonText}>Acompanhar B.O.</Text>
               </TouchableOpacity>
@@ -97,6 +97,23 @@ export default function MeusBos() {
           </View>
         ))}
       </ScrollView>
+
+      {/* Barra de Navegação */}
+      <View style={styles.bottomNavigation}>
+        {[{ icon: "home", path: "/home" },
+          { icon: "package", path: "/meusbos" },
+          { icon: "user", path: "/user" },
+          { icon: "map", path: "/map" },
+          { icon: "settings", path: "/config" }].map((item, index) => (
+            <TouchableOpacity
+              key={index}
+              style={styles.navButton}
+              onPress={() => router.push(item.path)} // Usando router.push para navegação
+            >
+              <Feather name={item.icon} size={24} color="#000" />
+            </TouchableOpacity>
+          ))}
+      </View>
     </View>
   );
 }
@@ -125,11 +142,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   headerButton: {
-    padding: 8,
+    padding: 10,
+    backgroundColor: '#4CAF50', // Ajustando para um verde mais forte
+    borderRadius: 8,
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
+    elevation: 2,
   },
   headerButtonText: {
-    color: '#000',
-    fontSize: 16,
+    color: '#fff',
+    fontSize: 18,
     fontWeight: 'bold',
   },
   scrollContainer: {
@@ -194,5 +217,17 @@ const styles = StyleSheet.create({
     color: '#FFF',
     fontWeight: 'bold',
     fontSize: 14,
+  },
+  bottomNavigation: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    paddingVertical: 10,
+    backgroundColor: '#B2FF9E', // Cor ajustada de acordo com o config
+    borderTopWidth: 1,
+    borderTopColor: '#DDD',
+  },
+  navButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });

@@ -15,7 +15,7 @@ export default function LoginScreen() {
   const [role, setRole] = useState<'Cidadão' | 'Policial'>('Policial');
 
   const handleLogin = () => {
-    router.push('/HomeScreen'); // Alteração feita aqui para ir para a tela '/registrarbo'
+    router.push('/registrarbo'); // Alteração feita aqui para ir para a tela '/registrarbo'
   };
 
   return (
