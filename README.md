@@ -1,4 +1,4 @@
-Thought for 2 seconds### Documentação do Projeto: Plataforma "Achei" (Mobile) 📱🔍
+### Documentação do Projeto: Plataforma "Achei" (Mobile) 📱🔍
 
 ## 1. Introdução 🚀
 
