@@ -557,6 +557,7 @@ export default PaperComponentsExample
 ```shellscript
 git clone https://github.com/Achei2025/PlataformaWeb.git
 git clone https://github.com/Achei2025/BackendAchei.git
+git clone https://github.com/Achei2025/mobileplataform.git
 ```
 
 2. Instale as dependências:
