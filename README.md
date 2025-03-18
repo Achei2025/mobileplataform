@@ -1,87 +1,87 @@
-Thought for 1 second### Documentação do Projeto: Plataforma "Achei" (Mobile)
+Thought for 2 seconds### Documentação do Projeto: Plataforma "Achei" (Mobile) 📱🔍
 
-## 1. Introdução
+## 1. Introdução 🚀
 
 A Plataforma "Achei" é uma solução tecnológica inovadora que visa facilitar a interação e comunicação entre cidadãos e policiais. Seu objetivo principal é promover maior eficiência na resolução de ocorrências, localização de objetos furtados e fortalecimento da segurança pública. Esta documentação fornece uma visão geral do projeto, incluindo sua arquitetura, funcionalidades, stack tecnológica e orientações para desenvolvimento, execução e manutenção.
 
-## 2. Objetivo do Projeto
+## 2. Objetivo do Projeto 🎯
 
-### 2.1. Objetivo Técnico
+### 2.1. Objetivo Técnico 💻
 
 Desenvolver uma plataforma integrada que permita:
 
-- **Gerenciamento de ocorrências**: Acompanhamento de ocorrências por cidadãos e policiais.
-- **Geolocalização em tempo real**: Auxílio na resolução de casos com base na localização dos usuários.
-- **Comunicação direta e segura**: Interação entre cidadãos e policiais de forma eficiente e protegida.
-- **Denúncias anônimas**: Possibilidade de realizar denúncias sem expor a identidade do denunciante.
-- **Armazenamento e análise de dados**: Coleta e processamento de dados para melhorias contínuas no sistema.
+- **Gerenciamento de ocorrências** 📋: Acompanhamento de ocorrências por cidadãos e policiais.
+- **Geolocalização em tempo real** 🗺️: Auxílio na resolução de casos com base na localização dos usuários.
+- **Comunicação direta e segura** 🔒: Interação entre cidadãos e policiais de forma eficiente e protegida.
+- **Denúncias anônimas** 🕵️: Possibilidade de realizar denúncias sem expor a identidade do denunciante.
+- **Armazenamento e análise de dados** 📊: Coleta e processamento de dados para melhorias contínuas no sistema.
 
 
-### 2.2. Objetivo de Negócio
+### 2.2. Objetivo de Negócio 💼
 
-- **Melhorar a eficiência**: Agilizar a resolução de ocorrências e localização de objetos.
-- **Fortalecer a confiança**: Promover uma relação mais próxima e transparente entre cidadãos e policiais.
-- **Oferecer uma ferramenta moderna**: Disponibilizar uma plataforma acessível e de fácil uso para segurança pública.
+- **Melhorar a eficiência** ⚡: Agilizar a resolução de ocorrências e localização de objetos.
+- **Fortalecer a confiança** 🤝: Promover uma relação mais próxima e transparente entre cidadãos e policiais.
+- **Oferecer uma ferramenta moderna** 📲: Disponibilizar uma plataforma acessível e de fácil uso para segurança pública.
 
 
-## 3. Stack Tecnológica
+## 3. Stack Tecnológica 🛠️
 
 A Plataforma "Achei" utiliza as seguintes tecnologias:
 
-### Backend
+### Backend ⚙️
 
-- **Linguagem**: Java.
-
-
-### Frontend
-
-- **Web**: React.js para a interface web.
-- **Mobile**: React Native para o aplicativo móvel (iOS e Android).
+- **Linguagem**: Java ☕.
 
 
-### Banco de Dados
+### Frontend 🖥️
 
-- **MySQL**: Para armazenamento de dados estruturados.
+- **Web**: React.js para a interface web ⚛️.
+- **Mobile**: React Native para o aplicativo móvel (iOS e Android) 📱.
 
 
-### Ferramentas Auxiliares
+### Banco de Dados 💾
 
-#### Framework Mobile
+- **MySQL**: Para armazenamento de dados estruturados 🗄️.
+
+
+### Ferramentas Auxiliares 🧰
+
+#### Framework Mobile 📱
 
 - **React Native**: Framework principal para desenvolvimento mobile cross-platform.
 - **TypeScript**: Linguagem de programação tipada utilizada em todos os arquivos.
 
 
-#### Desenvolvimento Mobile
+#### Desenvolvimento Mobile 📲
 
 - **Expo**: Plataforma para facilitar o desenvolvimento React Native, com uso de:
 
-- `expo-router` para navegação.
-- `expo-image-picker` para seleção de imagens.
+- `expo-router` para navegação 🧭.
+- `expo-image-picker` para seleção de imagens 🖼️.
 - Hooks de navegação como `useRouter` e `usePathname`.
 
 
 
 
 
-#### Gerenciamento de Estado
+#### Gerenciamento de Estado 🔄
 
 - **React Hooks**: `useState`, `useEffect`, `useRef` para gerenciamento de estado local.
-- **Context API**: Para gerenciamento de estado global, especialmente para o tema (dark/light mode).
+- **Context API**: Para gerenciamento de estado global, especialmente para o tema (dark/light mode) 🌓.
 
 
-#### Mapas e Geolocalização
+#### Mapas e Geolocalização 🗺️
 
 - **React Maps**: Biblioteca para integração de mapas interativos.
 
 - Suporte para marcadores, polígonos e outras formas geográficas.
-- Funcionalidades de mapa de calor para visualização de densidade de ocorrências.
+- Funcionalidades de mapa de calor para visualização de densidade de ocorrências 🔥.
 
 
 
 
 
-#### Bibliotecas de UI
+#### Bibliotecas de UI 🎨
 
 - **React Native Paper**: Componentes UI para React Native:
 
@@ -92,13 +92,13 @@ A Plataforma "Achei" utiliza as seguintes tecnologias:
 - **React Native StyleSheet**: Para estilização dos componentes.
 
 
-#### Bibliotecas de Ícones
+#### Bibliotecas de Ícones 🎭
 
 - **Feather Icons**: Conjunto principal de ícones.
 - **Material Icons**: Ícones adicionais para a interface.
 
 
-## 4. Exemplos de Código das Bibliotecas Utilizadas
+## 4. Exemplos de Código das Bibliotecas Utilizadas 📝
 
 ### React Native e TypeScript
 
@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
 export default ExampleComponent
 ```
 
-### Expo Router para Navegação
+### Expo Router para Navegação 🧭
 
 ```typescriptreact
 // Exemplo de uso do Expo Router
@@ -195,7 +195,7 @@ const NavigationExample = () => {
 export default NavigationExample
 ```
 
-### Context API para Tema (Dark/Light Mode)
+### Context API para Tema (Dark/Light Mode) 🌓
 
 ```typescriptreact
 // theme-context.tsx - Exemplo de Context API para gerenciamento de tema
@@ -256,7 +256,7 @@ export const darkTheme = {
 }
 ```
 
-### React Maps para Mapas
+### React Maps para Mapas 🗺️
 
 ```typescriptreact
 // Exemplo de implementação de mapa com React Maps
@@ -419,7 +419,7 @@ const styles = StyleSheet.create({
 export default MapScreen
 ```
 
-### Expo Image Picker
+### Expo Image Picker 📸
 
 ```typescriptreact
 // Exemplo de uso do Expo Image Picker
@@ -468,7 +468,7 @@ const styles = StyleSheet.create({
 export default ImagePickerExample
 ```
 
-### React Native Paper
+### React Native Paper 📑
 
 ```typescriptreact
 // Exemplo de uso do React Native Paper
@@ -531,17 +531,17 @@ const styles = StyleSheet.create({
 export default PaperComponentsExample
 ```
 
-## 5. Acesso e Execução do Código
+## 5. Acesso e Execução do Código 🔑
 
-### 5.1. Repositórios do Projeto
+### 5.1. Repositórios do Projeto 📁
 
 - **Frontend Web**: Achei2025/PlataformaWeb.
 - **Backend**: Achei2025/BackendAchei.
 
 
-### 5.2. Configuração do Ambiente
+### 5.2. Configuração do Ambiente ⚙️
 
-#### Pré-requisitos
+#### Pré-requisitos 📋
 
 - **Node.js**: Versão 16 ou superior.
 - **Expo CLI**: Para desenvolvimento mobile.
@@ -549,7 +549,7 @@ export default PaperComponentsExample
 - **MySQL**: Banco de dados configurado.
 
 
-#### Instalação e Execução
+#### Instalação e Execução 🚀
 
 1. Clone os repositórios:
 
@@ -590,9 +590,9 @@ mvn spring-boot:run
 npx expo start
 ```
 
-## 6. Estrutura do Projeto Mobile
+## 6. Estrutura do Projeto Mobile 📱
 
-### 6.1. Principais Componentes
+### 6.1. Principais Componentes 🧩
 
 - **theme-context.tsx**: Gerenciamento de tema (claro/escuro) usando Context API.
 - **homescreen.tsx**: Tela inicial do aplicativo.
@@ -605,65 +605,65 @@ npx expo start
 - **dashboardpolicial.tsx**: Dashboard para visualização de dados policiais.
 
 
-### 6.2. Funcionalidades Implementadas
+### 6.2. Funcionalidades Implementadas ✨
 
-- **Sistema de Tema**: Suporte completo para modo claro e escuro.
-- **Navegação**: Sistema de rotas com Expo Router.
-- **Mapas Interativos**: Visualização de ocorrências em mapa com suporte a mapa de calor.
-- **Cadastro de Objetos**: Interface para registro de equipamentos.
-- **Gestão de Boletins**: Criação e acompanhamento de boletins de ocorrência.
-- **Relatórios**: Visualização de estatísticas e dados.
-
-
-## 7. Processo de Desenvolvimento
-
-### 7.1. Gerenciamento de Código
-
-- **GitHub**: Utilizado para versionamento e gerenciamento de branches.
+- **Sistema de Tema** 🌓: Suporte completo para modo claro e escuro.
+- **Navegação** 🧭: Sistema de rotas com Expo Router.
+- **Mapas Interativos** 🗺️: Visualização de ocorrências em mapa com suporte a mapa de calor.
+- **Cadastro de Objetos** 📝: Interface para registro de equipamentos.
+- **Gestão de Boletins** 📋: Criação e acompanhamento de boletins de ocorrência.
+- **Relatórios** 📊: Visualização de estatísticas e dados.
 
 
-### 7.2. Padrões de Código
+## 7. Processo de Desenvolvimento 🔄
 
-- **TypeScript**: Uso de tipagem estática para maior segurança.
-- **Componentes Funcionais**: Utilização de React Hooks e componentes funcionais.
-- **Estilização Consistente**: Padrões de estilo mantidos em todo o projeto.
+### 7.1. Gerenciamento de Código 📊
 
-
-## 8. Boas Práticas
-
-### 8.1. Documentação
-
-- **Minimundo**: Documentar o escopo e as alterações antes de iniciar o desenvolvimento.
-- **Revisão Constante**: Manter a documentação atualizada conforme o projeto evolui.
-- **Colaboração**: Todos os membros da equipe podem editar e melhorar a documentação.
+- **GitHub** 🐙: Utilizado para versionamento e gerenciamento de branches.
 
 
-### 8.2. Reuniões e Comunicação
+### 7.2. Padrões de Código 📏
 
-- **Reuniões Constantes**: Realizar reuniões regulares para alinhamento de ideias e atualizações sobre o projeto.
-- **Ferramentas de Comunicação**: Utilizar ferramenta gather para comunicação ágil.
-
-
-## 9. Links Úteis
-
-- [Repositório Frontend Web](https://github.com/Achei2025/PlataformaWeb)
-- [Repositório Backend](https://github.com/Achei2025/BackendAchei)
-- [Documentação Expo](https://docs.expo.dev/)
-- [Documentação React Native](https://reactnative.dev/docs/getting-started)
-- [Documentação React Native Maps](https://github.com/react-native-maps/react-native-maps)
+- **TypeScript** 📘: Uso de tipagem estática para maior segurança.
+- **Componentes Funcionais** ⚛️: Utilização de React Hooks e componentes funcionais.
+- **Estilização Consistente** 🎨: Padrões de estilo mantidos em todo o projeto.
 
 
-## 10. Contribuição
+## 8. Boas Práticas 👍
+
+### 8.1. Documentação 📚
+
+- **Minimundo** 📝: Documentar o escopo e as alterações antes de iniciar o desenvolvimento.
+- **Revisão Constante** 🔍: Manter a documentação atualizada conforme o projeto evolui.
+- **Colaboração** 🤝: Todos os membros da equipe podem editar e melhorar a documentação.
+
+
+### 8.2. Reuniões e Comunicação 💬
+
+- **Reuniões Constantes** 👥: Realizar reuniões regulares para alinhamento de ideias e atualizações sobre o projeto.
+- **Ferramentas de Comunicação** 🗣️: Utilizar ferramenta gather para comunicação ágil.
+
+
+## 9. Links Úteis 🔗
+
+- [Repositório Frontend Web](https://github.com/Achei2025/PlataformaWeb) 🌐
+- [Repositório Backend](https://github.com/Achei2025/BackendAchei) ⚙️
+- [Documentação Expo](https://docs.expo.dev/) 📱
+- [Documentação React Native](https://reactnative.dev/docs/getting-started) 📚
+- [Documentação React Native Maps](https://github.com/react-native-maps/react-native-maps) 🗺️
+
+
+## 10. Contribuição 🤝
 
 Para contribuir com o projeto:
 
-1. Faça um fork do repositório
-2. Crie uma branch para sua feature (`git checkout -b feature/nova-funcionalidade`)
-3. Faça commit das suas alterações (`git commit -m 'Adiciona nova funcionalidade'`)
-4. Faça push para a branch (`git push origin feature/nova-funcionalidade`)
-5. Abra um Pull Request
+1. Faça um fork do repositório 🍴
+2. Crie uma branch para sua feature (`git checkout -b feature/nova-funcionalidade`) 🌿
+3. Faça commit das suas alterações (`git commit -m 'Adiciona nova funcionalidade'`) ✅
+4. Faça push para a branch (`git push origin feature/nova-funcionalidade`) 📤
+5. Abra um Pull Request 📥
 
 
-## 11. Licença
+## 11. Licença 📄
 
-Este projeto está licenciado sob os termos da licença MIT.
+Este projeto está licenciado sob os termos da licença MIT. ⚖️
