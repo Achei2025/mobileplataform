@@ -102,7 +102,7 @@ A Plataforma "Achei" utiliza as seguintes tecnologias:
 
 ### React Native e TypeScript
 
-```typescriptreact
+```tsx
 // Exemplo de componente React Native com TypeScript
 import { useState } from "react"
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native"
@@ -158,7 +158,7 @@ export default ExampleComponent
 
 ### Expo Router para Navegação 🧭
 
-```typescriptreact
+```tsx
 // Exemplo de uso do Expo Router
 import { useRouter, usePathname } from "expo-router"
 import { View, TouchableOpacity, Text } from "react-native"
@@ -197,7 +197,7 @@ export default NavigationExample
 
 ### Context API para Tema (Dark/Light Mode) 🌓
 
-```typescriptreact
+```tsx
 // theme-context.tsx - Exemplo de Context API para gerenciamento de tema
 import type React from "react"
 import { createContext, useState, useContext, useEffect } from "react"
@@ -258,7 +258,7 @@ export const darkTheme = {
 
 ### React Maps para Mapas 🗺️
 
-```typescriptreact
+```tsx
 // Exemplo de implementação de mapa com React Maps
 import React, { useState, useEffect, useRef } from "react"
 import { View, StyleSheet } from "react-native"
@@ -421,7 +421,7 @@ export default MapScreen
 
 ### Expo Image Picker 📸
 
-```typescriptreact
+```tsx
 // Exemplo de uso do Expo Image Picker
 import { useState } from "react"
 import { View, Button, Image, StyleSheet } from "react-native"
@@ -470,7 +470,7 @@ export default ImagePickerExample
 
 ### React Native Paper 📑
 
-```typescriptreact
+```tsx
 // Exemplo de uso do React Native Paper
 import { useState } from "react"
 import { View, StyleSheet } from "react-native"
