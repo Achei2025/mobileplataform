@@ -72,10 +72,10 @@ A Plataforma "Achei" utiliza as seguintes tecnologias:
 
 #### Mapas e Geolocalização
 
-- **React Leaflet**: Biblioteca para integração de mapas interativos.
+- **React Maps**: Biblioteca para integração de mapas interativos.
 
-- `MapContainer`, `TileLayer`, `Marker`, `Popup`.
-- Suporte para mapa de calor com `L.heatLayer`.
+- Suporte para marcadores, polígonos e outras formas geográficas.
+- Funcionalidades de mapa de calor para visualização de densidade de ocorrências.
 
 
 
@@ -256,97 +256,167 @@ export const darkTheme = {
 }
 ```
 
-### React Leaflet para Mapas
+### React Maps para Mapas
 
 ```typescriptreact
-// Exemplo de implementação de mapa com React Leaflet
-import { useState, useRef } from "react"
-import { View } from "react-native"
-import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from "react-leaflet"
-import L from "leaflet"
-import "leaflet/dist/leaflet.css"
-import "leaflet.heat"
+// Exemplo de implementação de mapa com React Maps
+import React, { useState, useEffect, useRef } from "react"
+import { View, StyleSheet } from "react-native"
+import MapView, { Marker, Heatmap, PROVIDER_GOOGLE } from "react-native-maps"
+import { useTheme, lightTheme, darkTheme } from "./theme-context"
 
-// Componente para eventos do mapa
-function MapEvents({ onMapClick }: { onMapClick: (lat: number, lng: number) => void }) {
-  useMapEvents({
-    click: (e) => {
-      onMapClick(e.latlng.lat, e.latlng.lng)
-    },
-  })
-  return null
+// Interface para o marcador
+interface OcorrenciaMarker {
+  id: number
+  coordinate: {
+    latitude: number
+    longitude: number
+  }
+  title: string
+  description: string
+  weight?: number
 }
 
-// Componente para o mapa de calor
-function HeatmapLayer({ points, show }: { points: any[]; show: boolean }) {
-  const mapRef = useRef<L.Map | null>(null)
-  const heatLayerRef = useRef<any>(null)
-
-  useEffect(() => {
-    if (!mapRef.current) return
-
-    // Remover camada de calor existente se houver
-    if (heatLayerRef.current) {
-      mapRef.current.removeLayer(heatLayerRef.current)
-      heatLayerRef.current = null
-    }
-
-    // Adicionar nova camada de calor se show for true
-    if (show && points.length > 0) {
-      const heatData = points.map((point) => [point.latitude, point.longitude, point.weight])
-      heatLayerRef.current = L.heatLayer(heatData, {
-        radius: 25,
-        blur: 15,
-        maxZoom: 17,
-        gradient: { 0.4: "green", 0.65: "yellow", 1: "red" },
-      }).addTo(mapRef.current)
-    }
-
-    return () => {
-      if (heatLayerRef.current && mapRef.current) {
-        mapRef.current.removeLayer(heatLayerRef.current)
-      }
-    }
-  }, [points, show])
-
-  return null
-}
-
-const MapExample = () => {
-  const [selectedLocation, setSelectedLocation] = useState<{ latitude: number; longitude: number } | null>(null)
+const MapScreen = () => {
+  const { darkMode } = useTheme()
+  const theme = darkMode ? darkTheme : lightTheme
+  const mapRef = useRef<MapView>(null)
   
-  // Função para lidar com o clique no mapa
-  const handleMapClick = (latitude: number, longitude: number) => {
-    setSelectedLocation({ latitude, longitude })
+  const [region, setRegion] = useState({
+    latitude: -23.55052,
+    longitude: -46.633308,
+    latitudeDelta: 0.0922,
+    longitudeDelta: 0.0421,
+  })
+  
+  const [markers, setMarkers] = useState<OcorrenciaMarker[]>([
+    {
+      id: 1,
+      coordinate: { latitude: -23.55052, longitude: -46.633308 },
+      title: "Furto",
+      description: "Furto de celular na Av. Paulista",
+      weight: 0.8,
+    },
+    {
+      id: 2,
+      coordinate: { latitude: -23.55352, longitude: -46.636308 },
+      title: "Roubo",
+      description: "Roubo de veículo na Rua Augusta",
+      weight: 0.6,
+    },
+    {
+      id: 3,
+      coordinate: { latitude: -23.54852, longitude: -46.631308 },
+      title: "Furto",
+      description: "Furto de bolsa na Praça da República",
+      weight: 0.7,
+    },
+  ])
+  
+  const [showHeatmap, setShowHeatmap] = useState(true)
+  const [selectedMarker, setSelectedMarker] = useState<OcorrenciaMarker | null>(null)
+
+  // Estilo do mapa para modo escuro
+  const mapStyle = darkMode ? [
+    {
+      "elementType": "geometry",
+      "stylers": [{ "color": "#242f3e" }]
+    },
+    {
+      "elementType": "labels.text.fill",
+      "stylers": [{ "color": "#746855" }]
+    },
+    {
+      "elementType": "labels.text.stroke",
+      "stylers": [{ "color": "#242f3e" }]
+    },
+    {
+      "featureType": "road",
+      "elementType": "geometry",
+      "stylers": [{ "color": "#38414e" }]
+    },
+    {
+      "featureType": "road",
+      "elementType": "geometry.stroke",
+      "stylers": [{ "color": "#212a37" }]
+    },
+    {
+      "featureType": "water",
+      "elementType": "geometry",
+      "stylers": [{ "color": "#17263c" }]
+    }
+  ] : []
+
+  // Função para adicionar um novo marcador
+  const handleMapPress = (event: any) => {
+    const { coordinate } = event.nativeEvent
+    
+    const newMarker: OcorrenciaMarker = {
+      id: Date.now(),
+      coordinate,
+      title: "Nova Ocorrência",
+      description: "Ocorrência registrada pelo usuário",
+      weight: 0.5,
+    }
+    
+    setMarkers([...markers, newMarker])
   }
 
   return (
-    <View style={{ height: "100%", width: "100%" }}>
-      <MapContainer
-        center={[-23.55052, -46.633308]} // São Paulo
-        zoom={15}
-        style={{ height: "100%", width: "100%" }}
+    <View style={styles.container}>
+      <MapView
+        ref={mapRef}
+        style={styles.map}
+        provider={PROVIDER_GOOGLE}
+        region={region}
+        onRegionChangeComplete={setRegion}
+        onPress={handleMapPress}
+        customMapStyle={mapStyle}
       >
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-
-        {/* Componente para capturar eventos do mapa */}
-        <MapEvents onMapClick={handleMapClick} />
-
-        {/* Marcador do local selecionado */}
-        {selectedLocation && (
-          <Marker position={[selectedLocation.latitude, selectedLocation.longitude]}>
-            <Popup>Local selecionado</Popup>
-          </Marker>
+        {/* Marcadores */}
+        {markers.map((marker) => (
+          <Marker
+            key={marker.id}
+            coordinate={marker.coordinate}
+            title={marker.title}
+            description={marker.description}
+            onPress={() => setSelectedMarker(marker)}
+            pinColor={marker.id === selectedMarker?.id ? "red" : "#28A745"}
+          />
+        ))}
+        
+        {/* Mapa de calor */}
+        {showHeatmap && (
+          <Heatmap
+            points={markers.map((marker) => ({
+              ...marker.coordinate,
+              weight: marker.weight || 0.5,
+            }))}
+            radius={20}
+            opacity={0.7}
+            gradient={{
+              colors: ["#00FF00", "#FFFF00", "#FF0000"],
+              startPoints: [0.2, 0.5, 0.8],
+              colorMapSize: 256,
+            }}
+          />
         )}
-      </MapContainer>
+      </MapView>
     </View>
   )
 }
 
-export default MapExample
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  map: {
+    width: "100%",
+    height: "100%",
+  },
+})
+
+export default MapScreen
 ```
 
 ### Expo Image Picker
@@ -526,7 +596,7 @@ npx expo start
 
 - **theme-context.tsx**: Gerenciamento de tema (claro/escuro) usando Context API.
 - **homescreen.tsx**: Tela inicial do aplicativo.
-- **maps.tsx**: Implementação de mapas com React Leaflet.
+- **maps.tsx**: Implementação de mapas com React Maps.
 - **meusbos.tsx**: Gerenciamento de boletins de ocorrência.
 - **perfil.tsx**: Perfil do usuário e objetos cadastrados.
 - **cadastroequipamento.tsx**: Cadastro de novos equipamentos.
@@ -580,7 +650,7 @@ npx expo start
 - [Repositório Backend](https://github.com/Achei2025/BackendAchei)
 - [Documentação Expo](https://docs.expo.dev/)
 - [Documentação React Native](https://reactnative.dev/docs/getting-started)
-- [Documentação React Leaflet](https://react-leaflet.js.org/)
+- [Documentação React Native Maps](https://github.com/react-native-maps/react-native-maps)
 
 
 ## 10. Contribuição
