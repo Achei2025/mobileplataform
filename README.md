@@ -667,4 +667,4 @@ Para contribuir com o projeto:
 
 ## 11. Licença 📄
 
-Este projeto está licenciado sob os termos da licença MIT. ⚖️
+Este projeto está licenciado sob os termos da licença GPL. ⚖️
